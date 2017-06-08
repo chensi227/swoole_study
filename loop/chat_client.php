@@ -37,5 +37,6 @@ function onInput()
 }
 
 swoole_event_add($socket,'onRead','onWrite');
+//监听键盘输入
 swoole_event_add(STDIN,'onInput');
 fwrite(STDOUT,"请输入消息:");
