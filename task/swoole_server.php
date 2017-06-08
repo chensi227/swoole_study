@@ -25,10 +25,12 @@ class Server
         $this->serv->start();
     }
 
+    //开始的调用
     public function onStart( $serv ) {
         echo "开始\n";
     }
 
+    //连接的时候调用
     public function onConnect( $serv, $fd, $from_id ) {
         $serv->send( $fd, "Hello {$fd}!" );
     }
@@ -39,6 +41,7 @@ class Server
      *   OnClose，关闭连接，也就是客户\服务其中一方挂掉了电话时发生。
      *
      * */
+    //接收到数据时回调此函数，发生在worker进程中
     //$fd客户端描述符
     public function onReceive( swoole_server $serv, $fd, $from_id, $data ) {
         echo "Get Message From Client {$fd}:{$data}\n";

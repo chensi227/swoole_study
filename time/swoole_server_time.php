@@ -14,7 +14,7 @@ class TimerServer
             'debug_mode'=> 1 ,
         ));
         $this->serv->on('Start', array($this, 'onStart'));
-//        $this->serv->on('WorkerStart', array($this, 'onWorkerStart'));
+        $this->serv->on('WorkerStart', array($this, 'onWorkerStart'));
         $this->serv->on('Connect', array($this, 'onConnect'));
         $this->serv->on('Receive', array($this, 'onReceive'));
         $this->serv->on('Finish',array($this,'onFinish'));
@@ -26,7 +26,7 @@ class TimerServer
         echo "开始\n";
     }
 
-    /*public function onWorkerStart( $serv , $worker_id) {
+    public function onWorkerStart( $serv , $worker_id) {
         // 在Worker进程开启时绑定定时器
         echo "onWorkerStart\n";
         // 只有当worker_id为0时才添加定时器,避免重复添加
@@ -36,7 +36,7 @@ class TimerServer
                 echo "param:{$params}\n";
             },"hello");
         }
-    }*/
+    }
 
     public function onConnect( $serv, $fd, $from_id ) {
         echo "Client {$fd} connect\n";
